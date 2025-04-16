@@ -10,8 +10,9 @@ public:
 };
 
 int main() {
+  cout << "started" << endl;
   //create object
-  Matrix calc();
+  Matrix calc = Matrix();
   // Create test matrices
   vector<vector<int>> matrix1 = { {1, 0, 0},{0, 1, 0},{0, 0, 1} };
   vector<vector<int>> matrix2 = { {0, 1, 1},{1, 0, 1},{1, 1, 0} };
