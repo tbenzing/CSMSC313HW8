@@ -5,7 +5,7 @@ using namespace std;
 
 class Matrix {
 public:
-  bool add(const vector<vector<int>>& a, const vector<vector<int>>& b);
+  bool add(vector<vector<int>>& a, const vector<vector<int>>& b);
   void print(const vector<vector<int>>& a);
 };
 
@@ -18,14 +18,16 @@ int main() {
   vector<vector<int>> matrix2 = { {0, 1, 1},{1, 0, 1},{1, 1, 0} };
   // Print original matrices
   calc.print(matrix1);
+  calc.print(matrix2);
   // Perform addition, multiplication, etc.
-
+  calc.add(matrix1, matrix2);
+  calc.print(matrix1);
   // Print results
 
   return 0;
 }
 
-bool Matrix::add(const vector<vector<int>>& a, const vector<vector<int>>& b) {
+bool Matrix::add(vector<vector<int>>& a, const vector<vector<int>>& b) {
   //check that rows and columns are same size
   if ((a.size() != b.size()) || (a[0].size() != b[0].size())) {
     cout << "Matrices must be same size to add" << endl;
@@ -35,7 +37,7 @@ bool Matrix::add(const vector<vector<int>>& a, const vector<vector<int>>& b) {
   //to its corresponding value of a
   for (unsigned int i = 0; i < a.size(); i++) {
     for (unsigned int j = 0; j < a[0].size(); j++) {
-      return true;
+      a[i][j] += b[i][j];
     }
   }
   return false;
