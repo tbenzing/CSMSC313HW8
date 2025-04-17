@@ -5,8 +5,9 @@ using namespace std;
 
 class Matrix {
 public:
-  bool add(vector<vector<int>>& a, const vector<vector<int>>& b);
-  void print(const vector<vector<int>>& a);
+  bool add(vector<vector<int>>& a, const vector<vector<int>>& b); //adds b to a, returns false if fails
+  bool mult(vector<vector<int>>& a, const vector<vector<int>>& b); //multiplies a by b
+  void print(const vector<vector<int>>& a); //prints a
 };
 
 int main() {
@@ -40,7 +41,29 @@ bool Matrix::add(vector<vector<int>>& a, const vector<vector<int>>& b) {
       a[i][j] += b[i][j];
     }
   }
-  return false;
+  return true;
+}
+
+bool Matrix::mult(vector<vector<int>>& a, const vector<vector<int>>& b) {
+  //check that the num of columns in a are equal to the num of rows in b
+  if (a[0].size() != b.size()) {
+    cout << "Matrix A and B must have the same number of columns as rows respectively" << endl;
+    return false;
+  }
+  //we will need to create a new matrix with the correct multiplication dimensions
+  vector<vector<int>> temp(a.size(), vector<int>(b[0].size(), 0));
+
+  //for each row in a, multiply each value by the corresponding value in each column of b
+  //for each row in a --> i is our row in a
+  for(unsigned int i = 0; i < a.size(); i++) {
+    //for each column in b --> j is our column
+    for(unsigned int j = 0; j < b[0].size(); j++) {
+      //for each value in each --> k is our value
+      for(unsigned int k = 0; k < a[0].size(); k++) {
+        temp[i][j] += (a[i][k]*b[j][k]);
+    }
+  }
+  return true;
 }
 
 void Matrix::print(const vector<vector<int>>& a) {
