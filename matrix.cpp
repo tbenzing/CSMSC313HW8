@@ -17,6 +17,8 @@ int main() {
   // Create test matrices
   vector<vector<int>> matrix1 = { {1, 0, 0},{0, 1, 0},{0, 0, 1} };
   vector<vector<int>> matrix2 = { {0, 1, 1},{1, 0, 1},{1, 1, 0} };
+  vector<vector<int>> matrix3 = { {1, 0, 0},{0, 1, 0} };
+  vector<vector<int>> matrix4 = { {0, 1},{1, 0},{1, 1} };
   // Print original matrices
   calc.print(matrix1);
   calc.print(matrix2);
@@ -24,7 +26,11 @@ int main() {
   calc.add(matrix1, matrix2);
   calc.print(matrix1);
   // Print results
+  calc.mult(matrix1, matrix2);
+  calc.print(matrix1);
 
+  calc.mult(matrix3, matrix4);
+  calc.print(matrix3);
   return 0;
 }
 
@@ -61,8 +67,10 @@ bool Matrix::mult(vector<vector<int>>& a, const vector<vector<int>>& b) {
       //for each value in each --> k is our value
       for(unsigned int k = 0; k < a[0].size(); k++) {
         temp[i][j] += (a[i][k]*b[j][k]);
+      }
     }
   }
+  a = temp;
   return true;
 }
 
